@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1070536871755",
+    "project_id": "movilesii-ffaab",
+    "storage_bucket": "movilesii-ffaab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070536871755:android:17306884650e8d9501a2ce",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_moviles_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTQTjuctWA9XnkAcl5_O3w5I9h_eL0lSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
