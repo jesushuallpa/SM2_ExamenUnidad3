@@ -1,32 +1,90 @@
-# Proyecto Móvil - TrendyCart
+# Examen de unidad 3
 
 **Curso:** Soluciones Móviles II  
 **Docente:** Dr. Oscar Juan Jimenez Flores  
 
-**Integrantes:**
-- Salinas Condori, Erick Javier – 2020069046  
-- Zevallos Purca, Justin Zinedine – 2020066924  
-- Mayner Gonzalo Anahua Coaquira – 2020067145  
-- Escobar Rejas, Carlos Andrés – 2021070016  
+**Alumno:**
 - Huallpa Maron, Jesus – 2021071085  
-- Soto Rodriguez, Duanet – 2015051384  
 
 ---
 
-# Historias de Usuario
+## 📎 URL del Repositorio
 
-| ID | Título                              | User Story                                                                                         | Criterios de Aceptación |
-|----|-------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------|
-| 1  | Inicio Sesión                       | Como usuario, quiero iniciar sesión para acceder al sistema.                                       | **CA01:** Inicio exitoso<br>**CA02:** Credenciales incorrectas |
-| 2  | Registro de Usuario                 | Como cliente y vendedor, quiero registrarme ingresando mis datos personales para usar la plataforma.| **CA01:** Registro exitoso<br>**CA02:** Correo único |
-| 3  | Visualización de Catálogos         | Como cliente, quiero explorar un catálogo con imágenes, precios y calificaciones.                 | **CA01:** Visualización<br>**CA02:** Ordenar por calificación o precio |
-| 4  | Publicación de comentarios          | Como cliente, quiero publicar comentarios para ayudar a otros.                                    | **CA01:** Publicación exitosa<br>**CA02:** Visualización de comentarios |
-| 5  | Buscar productos por categoría      | Como cliente, quiero filtrar productos por categorías.                                             | **CA01:** Filtrado por tipo de producto |
-| 6  | Interacción con chatbot             | Como cliente, quiero resolver dudas mediante un chatbot interactivo.                              | **CA01:** Inicio de la interacción |
-| 7  | Pagos seguros                       | Como cliente, quiero pagar en línea de forma segura.                                               | **CA01:** Selección de método de pago |
-| 8  | Gestión de usuarios (admin)         | Como administrador, quiero gestionar cuentas de usuarios.                                          | **CA01:** Creación de usuario<br>**CA02:** Desactivación de usuario |
-| 9  | Gestión de productos (admin)        | Como administrador, quiero gestionar el inventario de productos.                                   | **CA01:** Agregar nuevo producto |
-| 10 | Actualización del carrito           | Como cliente, quiero que el carrito se actualice automáticamente.                                 | **CA01:** Agregar producto al carrito |
-| 11 | Recuperación de contraseña          | Como usuario, quiero recuperar mi contraseña olvidada.                                             | **CA01:** Solicitud de recuperación<br>**CA02:** Restablecimiento exitoso |
-| 12 | Agregar productos a favoritos       | Como cliente, quiero agregar productos a una lista de deseos.                                     | **CA01:** Agregar a favoritos<br>**CA02:** Visualización de favoritos |
+[https://github.com/usuario/SM2_ExamenUnidad3](https://github.com/usuario/SM2_ExamenUnidad3)
 
+---
+## 📁 3 tests pasados con exito `.github/workflows/`
+
+![Estructura de carpetas](img/E1.PNG)
+
+## 📁 Estructura de carpetas `.github/workflows/`
+![Estructura de carpetas](img/E3.PNG)
+![Estructura de carpetas](img/E2.PNG)
+
+
+## 📁 archivos tests
+![Estructura de carpetas](img/E4.PNG)
+
+---
+
+## 📄 Contenido del archivo `quality-check.yml`
+
+```yaml
+name: Flutter CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.10.5'
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Analyze
+      run: flutter analyze
+
+    - name: Run tests
+      run: flutter test
+---
+
+#### 6. **Agregar sección final de explicación**
+Falta una redacción clara de la **explicación de lo realizado**. Puedes usar esto como base:
+
+```markdown
+---
+
+## 📝 Explicación de lo realizado
+
+Este examen consistió en implementar un flujo de integración continua (CI) usando GitHub Actions en un proyecto Flutter. Se crearon pruebas unitarias, y se automatizó su ejecución al hacer cambios en la rama `main`.
+
+Pasos realizados:
+
+1. Se configuró el archivo `quality-check.yml` dentro de la ruta `.github/workflows/`.
+2. Se definieron los pasos para instalación de dependencias, análisis estático (`flutter analyze`) y ejecución de pruebas (`flutter test`).
+3. Se subió el proyecto a un repositorio público en GitHub.
+4. Se verificó que el workflow se ejecuta automáticamente al hacer un push.
+5. Se capturaron evidencias gráficas del resultado exitoso en la pestaña “Actions”.
+
+Este informe ha sido exportado como archivo PDF, cumpliendo todos los criterios solicitados.
+
+---
+
+## ✔️ Consideraciones cumplidas
+
+- [x] Informe incluido en el `README.md` del repositorio.
+- [x] Repositorio público en GitHub.
+- [x] Archivo `quality-check.yml` ubicado en `.github/workflows/`.
+- [x] Ejecución automática confirmada en la pestaña `Actions`.
+- [x] Capturas de evidencia incluidas.
+- [x] Redacción clara y formato PDF entregado.
