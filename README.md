@@ -10,7 +10,7 @@
 
 ## 📎 URL del Repositorio
 
-[https://github.com/usuario/SM2_ExamenUnidad3](https://github.com/usuario/SM2_ExamenUnidad3)
+[https://github.com/usuario/SM2_ExamenUnidad3](https://github.com/jesushuallpa/SM2_ExamenUnidad3.git)
 
 ---
 ## 📁 3 tests pasados con exito `.github/workflows/`
