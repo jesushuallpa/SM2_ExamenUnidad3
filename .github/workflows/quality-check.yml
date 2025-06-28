@@ -1,28 +1,68 @@
-name: Quality Check
+# Nombre del flujo de trabajo que se mostrará en la pestaña "Actions" de GitHub.
+name: Dart CI
 
+# Configuración de cuándo se debe ejecutar este flujo de trabajo.
 on:
+  # Se ejecuta cuando se hace un 'push' a la rama 'main'.
   push:
-    branches: [main]
+    branches: [ main ]
+  # También se ejecuta cuando se crea un 'pull request' dirigido a la rama 'main'.
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
+# Define los trabajos (jobs) que se ejecutarán como parte de este flujo de trabajo.
 jobs:
-  analyze:
+  # Se define un único trabajo llamado 'build'. Puedes nombrarlo como prefieras (p. ej., 'test', 'analyze').
+  build:
+    # El tipo de máquina virtual en la que se ejecutará el trabajo.
+    # 'ubuntu-latest' es una opción común y recomendada.
     runs-on: ubuntu-latest
 
+    # La secuencia de pasos que componen el trabajo.
     steps:
-      - uses: actions/checkout@v3
+      # Paso 1: Descarga el código de tu repositorio.
+      # Usa la acción 'actions/checkout@v3' para acceder a tu código fuente.
+      - name: ⬇️ Descargar código fuente
+        uses: actions/checkout@v3
 
-      - name: Set up Flutter
+      # Paso 2: Configura el entorno de Flutter.
+      # Usa la acción 'subosito/flutter-action@v2' para instalar el SDK de Flutter.
+      # Puedes especificar una versión concreta de Flutter si lo necesitas.
+      - name: 🐦 Configurar Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.32.5'  # ajusta a tu versión de Flutter
+          flutter-version: '3.19.0' # Reemplaza con tu versión de Flutter deseada.
+          channel: 'stable' # Puedes usar 'stable', 'beta', o 'dev'.
 
-      - name: Install dependencies
+      # Paso 3: Instala las dependencias del proyecto.
+      # Ejecuta el comando 'flutter pub get' para descargar todos los paquetes
+      # definidos en tu archivo pubspec.yaml.
+      - name: 📦 Instalar dependencias
         run: flutter pub get
 
-      - name: Analyze
+      # Paso 4: Genera archivos de código (p. ej., para mocks).
+      # Este paso es CRUCIAL si usas paquetes como mockito, freezed, etc.
+      # Ejecuta build_runner para generar los archivos necesarios antes de analizar y probar.
+      - name: ⚙️ Generar archivos de código
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      # Paso 5: Analiza el código fuente.
+      # Ejecuta 'flutter analyze' para verificar si hay errores o advertencias en el código
+      # según las reglas de lint configuradas en 'analysis_options.yaml'.
+      - name: 🔬 Analizar el código
         run: flutter analyze
 
-      - name: Run tests
-        run: flutter test
+      # Paso 6: Ejecuta las pruebas unitarias y de widgets.
+      # Ejecuta 'flutter test' para correr todas las pruebas que se encuentren
+      # en el directorio 'test/'. El flag '--coverage' genera un reporte de cobertura.
+      - name: ✅ Ejecutar pruebas
+        run: flutter test --coverage
+
+      # (Opcional) Paso 7: Sube el reporte de cobertura de pruebas.
+      # Usa la acción 'actions/upload-artifact' para guardar los resultados de la cobertura
+      # como un "artefacto" del flujo de trabajo, que podrás descargar después.
+      - name: 📤 Subir reporte de cobertura
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
